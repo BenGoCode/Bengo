@@ -3,18 +3,22 @@ package org.example;
 import org.example.Coin.ILS;
 import org.example.Coin.USD;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 import java.util.Scanner;
 
 public class Main {
+    //Arraylist of user conversion results
+    static ArrayList<Double> results = new ArrayList<Double>();
+
     public static void main(String[] args) {
         System.out.println("Hello, Welcome to Bengo Currency convertor!");
         Screen1();
-
     }
 //Introduction screen
     public static void Screen1() {
+
         //First answer from user will be ans1:
         int ans1 = 3;
         //Loop for conversion type selection
@@ -34,15 +38,14 @@ public class Main {
                     System.out.println("Wrong input. please enter 1 or 2.");
                     ans1 = 3;
                 }
-
             } catch (InputMismatchException Q1) {
                 System.out.println("Oops, this field is only for numbers. Please insert 1 Or 2. Let's try again!");
                 ans1 = 3;
             }
         }
     }
-
     public static void Screen2_S_to_D() {
+
         //second answer from user will be ans2:
         double ans2 = 0;
         while (ans2 == 0) {
@@ -53,6 +56,7 @@ public class Main {
                 USD myUSD = new USD();
                 double result = myUSD.calculate(ans2);
                 System.out.println("The result for your conversion is :" + result);
+                results.add(result);
                 Screen3();
             } catch (InputMismatchException q2) {
                 System.out.println("Please insert a sum for conversion (Use only numbers)");
@@ -62,6 +66,7 @@ public class Main {
     }
 
     public static void Screen2_D_to_S() {
+
         //second answer from user will be ans2:
         double ans2 = 0;
         while (ans2 == 0) {
@@ -72,6 +77,7 @@ public class Main {
                 ILS myILS = new ILS();
                 double result = myILS.calculate(ans2);
                 System.out.println("The result for your conversion is :" + result);
+                results.add(result);
                 Screen3();
             } catch (InputMismatchException q2) {
                 System.out.println("Please insert a sum for conversion (Use only numbers)");
@@ -82,13 +88,12 @@ public class Main {
 
     public static void Screen3() {
         String ans3 = "X";
-
         System.out.println("Thank you for using Bengo convertor!");
-        System.out.println("Would you like to preform another conversion?");
-        System.out.println("If yes - enter Y. If not, enter N.");
 
         while (ans3=="X"){
         try {
+            System.out.println("Would you like to preform another conversion?");
+            System.out.println("If yes - enter Y. If not, enter N.");
             Scanner sc3 = new Scanner(System.in);
             ans3 = sc3.next();
             if (ans3.equals("Y")) {
@@ -110,6 +115,8 @@ public class Main {
     }
     public static void Screen4(){
         //Here should be printed arraylist with all conversion results.
+        System.out.println("Here are all the results from your coin conversion session:");
+        System.out.println(results);
         System.out.println("Thank you and see you next time! Goodbye!");
     }
 }
